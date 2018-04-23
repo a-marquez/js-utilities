@@ -58,6 +58,16 @@ export function getUnixEpochSeconds (): number {
 }
 
 /**
+ * Shorthand for document.querySelectorAll with NodeList response cast to an Array.
+ *
+ * @param {string} selector
+ * @returns {Node[]}
+ */
+export function $ (selector: string): Node[] {
+  return Array.from(document.querySelectorAll(selector))
+}
+
+/**
  * Curry a function.
  *
  * @see https://gist.github.com/Couto/35e177283855b874d8a6

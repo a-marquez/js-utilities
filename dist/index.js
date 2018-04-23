@@ -1,9 +1,21 @@
 /**
+ * Functions/literals I often reach for.
+ *
+ * [![Build Status](https://img.shields.io/travis/a-marquez/js-utilities/master.svg?style=flat-square)](https://travis-ci.org/a-marquez/js-utilities)
+ *
+ * @module js-utilities
+ * @typicalname utils
+ * @example
+ * npm install a-marquez/js-utilities
+ * import * as utils from 'js-utilities'
+ * import {stringifyPretty} from 'js-utilities'
+ */
+/**
  * RegEx literal to match domains.
  */
 export const domainRegex = /(?:https?)?(?::\/\/)?(?:www\.)?([\w.]+)/;
 /**
- * Log an object and return it.
+ * Log a value and return it, useful within function compositions.
  *
  * @param {any} _
  * @returns {any}
@@ -13,7 +25,7 @@ export function log(_) {
     return _;
 }
 /**
- * Use a debugger statement and any passed object.
+ * Use a debugger statement and return any passed value, useful within function compositions.
  *
  * @param {any} _
  * @returns {any}
@@ -23,19 +35,9 @@ export function debug(_) {
     return _;
 }
 /**
- * Bind all functions by name and context.
+ * JSON stringify a value with pretty settings.
  *
- * @param {any} context
- * @param {string[]} contextFnNames
- * @returns {void}
- */
-export function contextBindFns(context, contextFnNames) {
-    contextFnNames.forEach((fnName) => { context[fnName] = context[fnName].bind(context); });
-}
-/**
- * JSON stringify an object with pretty settings.
- *
- * @param {Object} _
+ * @param {any} _
  * @returns {string}
  */
 export function stringifyPretty(_) {
@@ -48,6 +50,15 @@ export function stringifyPretty(_) {
  */
 export function getUnixEpochSeconds() {
     return Math.floor(Date.now() / 1000);
+}
+/**
+ * Shorthand for document.querySelectorAll with NodeList response cast to an Array.
+ *
+ * @param {string} selector
+ * @returns {Node[]}
+ */
+export function $(selector) {
+    return Array.from(document.querySelectorAll(selector));
 }
 /**
  * Curry a function.
@@ -76,4 +87,14 @@ export function compose(fn, ...rest) {
         fn :
         // @ts-ignore
         (...args) => fn(compose(...rest)(...args));
+}
+/**
+ * Bind all functions by name to given context.
+ *
+ * @param {any} context
+ * @param {string[]} contextFnNames
+ * @returns {void}
+ */
+export function contextBindFns(context, contextFnNames) {
+    contextFnNames.forEach((fnName) => { context[fnName] = context[fnName].bind(context); });
 }

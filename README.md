@@ -18,6 +18,7 @@ import {stringifyPretty} from 'js-utilities'
     * [.debug(_)](#module_js-utilities.debug) ⇒ <code>any</code>
     * [.stringifyPretty(_)](#module_js-utilities.stringifyPretty) ⇒ <code>string</code>
     * [.getUnixEpochSeconds()](#module_js-utilities.getUnixEpochSeconds) ⇒ <code>number</code>
+    * [.$(selector)](#module_js-utilities.$) ⇒ <code>Array.&lt;Node&gt;</code>
     * [.curry(fn)](#module_js-utilities.curry) ⇒ <code>function</code>
     * [.compose(fn)](#module_js-utilities.compose) ⇒ <code>function</code>
     * [.contextBindFns(context, contextFnNames)](#module_js-utilities.contextBindFns) ⇒ <code>void</code>
@@ -37,7 +38,7 @@ RegEx literal to match domains.
 <a name="module_js-utilities.log"></a>
 
 ### utils.log(_) ⇒ <code>any</code>
-Log value and return it, useful within function compositions.
+Log a value and return it, useful within function compositions.
 
 **Kind**: static method of [<code>js-utilities</code>](#module_js-utilities)  
 
@@ -82,6 +83,20 @@ JSON stringify a value with pretty settings.
 Return the current Unix Epoch Time in seconds.
 
 **Kind**: static method of [<code>js-utilities</code>](#module_js-utilities)  
+
+* * *
+
+<a name="module_js-utilities.$"></a>
+
+### utils.$(selector) ⇒ <code>Array.&lt;Node&gt;</code>
+Shorthand for document.querySelectorAll with NodeList response cast to an Array.
+
+**Kind**: static method of [<code>js-utilities</code>](#module_js-utilities)  
+
+| Param | Type |
+| --- | --- |
+| selector | <code>string</code> | 
+
 
 * * *
 
