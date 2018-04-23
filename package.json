@@ -6,13 +6,14 @@
   "scripts": {
     "build": "tsc --target esnext --outDir build index.ts",
     "dist": "tsc --target esnext --outDir dist index.ts",
-    "docs": "documentation readme --section=Documentation build/index.js",
+    "docs": "jsdoc2md --separators --no-cache build/index.js >| README.md",
+    "lint": "tslint index.ts",
     "lint-fix": "tslint --fix index.ts",
     "test": "tslint index.ts && npm run build && ava"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "tslint index.ts",
+      "pre-commit": "npm run lint",
       "pre-push": "npm test"
     }
   },
@@ -34,9 +35,9 @@
   "dependencies": {},
   "devDependencies": {
     "ava": "1.0.0-beta.4",
-    "documentation": "^6.3.0",
     "esm": "^3.0.20",
     "husky": "^1.0.0-rc.1",
+    "jsdoc-to-markdown": "^4.0.1",
     "tslint": "^5.9.1",
     "tslint-config-standard": "^7.0.0",
     "typescript": "^2.8.3"

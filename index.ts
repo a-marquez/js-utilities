@@ -1,10 +1,23 @@
 /**
+ * Functions/literals I often reach for.
+ *
+ * [![Build Status](https://img.shields.io/travis/a-marquez/js-utilities/master.svg?style=flat-square)](https://travis-ci.org/a-marquez/js-utilities)
+ *
+ * @module js-utilities
+ * @typicalname utils
+ * @example
+ * npm install a-marquez/js-utilities
+ * import * as utils from 'js-utilities'
+ * import {stringifyPretty} from 'js-utilities'
+ */
+
+/**
  * RegEx literal to match domains.
  */
 export const domainRegex = /(?:https?)?(?::\/\/)?(?:www\.)?([\w.]+)/
 
 /**
- * Log an object and return it.
+ * Log a value and return it, useful within function compositions.
  *
  * @param {any} _
  * @returns {any}
@@ -15,7 +28,7 @@ export function log (_: any): any {
 }
 
 /**
- * Use a debugger statement and any passed object.
+ * Use a debugger statement and return any passed value, useful within function compositions.
  *
  * @param {any} _
  * @returns {any}
@@ -26,23 +39,12 @@ export function debug (_: any): any {
 }
 
 /**
- * Bind all functions by name and context.
+ * JSON stringify a value with pretty settings.
  *
- * @param {any} context
- * @param {string[]} contextFnNames
- * @returns {void}
- */
-export function contextBindFns (context: any , contextFnNames: string[]): void {
-  contextFnNames.forEach((fnName) => { context[fnName] = context[fnName].bind(context) })
-}
-
-/**
- * JSON stringify an object with pretty settings.
- *
- * @param {Object} _
+ * @param {any} _
  * @returns {string}
  */
-export function stringifyPretty (_: Object): string {
+export function stringifyPretty (_: any): string {
   return JSON.stringify(_, null, 2)
 }
 
@@ -83,4 +85,15 @@ export function compose (fn: Function, ...rest: Function[]): Function {
     fn :
     // @ts-ignore
     (...args) => fn(compose(...rest)(...args))
+}
+
+/**
+ * Bind all functions by name to given context.
+ *
+ * @param {any} context
+ * @param {string[]} contextFnNames
+ * @returns {void}
+ */
+export function contextBindFns (context: any , contextFnNames: string[]): void {
+  contextFnNames.forEach((fnName) => { context[fnName] = context[fnName].bind(context) })
 }
